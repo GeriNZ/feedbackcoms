@@ -1,0 +1,46 @@
+<form id="feedbackForm">
+    <label for="student">Select student:</label>
+    <select id="student" name="student" required>
+      <option value="" disabled selected>Select a student</option>
+      <option value="Brianna">Brianna</option>
+      <option value="Colette">Colette</option>
+      <option value="Dana">Dana</option>
+      <option value="Imani">Imani</option>
+      <option value="Jadel">Jadel</option>
+      <option value="Jalivia">Jalivia</option>
+      <option value="Paige">Paige</option>
+      <option value="Shanice">Shanice</option>
+    </select>
+  
+    <br><br>
+    <label for="comment">Your feedback (anonymous):</label><br>
+    <textarea id="comment" name="comment" rows="6" cols="60" placeholder="Write constructive comments on the project proposal..." required></textarea>
+    
+    <br><br>
+    <button type="submit">Submit Feedback</button>
+  </form>
+  
+  <script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyh18O52ymtpWHw0ETXMtrG7BAZ1jS30EVXAMzJzIle9iVLeC2epdvH-KtjA0g1xvhlPA/exec"
+  document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+  
+    const student = document.getElementById("student").value;
+    const comment = document.getElementById("comment").value;
+  
+    try {
+      await fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ student, comment }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+  
+      alert("Feedback submitted anonymously!");
+      document.getElementById("feedbackForm").reset();
+    } catch (error) {
+      alert("Error submitting feedback. Please try again.");
+      console.error("Submission failed:", error);
+    }
+  });
+  </script>
+  
