@@ -6,73 +6,73 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 2rem;
+      margin: 2rem;
+      background: #f9f9f9;
+    }
+
+    h2 {
+      color: #333;
     }
 
     form {
       background: #fff;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       max-width: 800px;
       margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-top: 1rem;
-    }
-
-    select, textarea, button {
-      width: 100%;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    .star-group {
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-      justify-content: start;
-      margin: 0.5rem 0;
-    }
-
-    .star-group input[type="radio"] {
-      display: none;
-    }
-
-    .star-group label {
-      font-size: 1.5rem;
-      color: #ccc;
-      cursor: pointer;
-    }
-
-    .star-group input[type="radio"]:checked ~ label,
-    .star-group label:hover,
-    .star-group label:hover ~ label {
-      color: gold;
     }
 
     .section {
       margin-bottom: 2rem;
     }
 
-    #confirmationMessage {
-      display: none;
-      color: green;
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
       font-weight: bold;
-      text-align: center;
-      margin-top: 2rem;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+
+    .star-rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+    .star-rating input[type="radio"] {
+      display: none;
+    }
+
+    .star-rating label {
+      font-size: 1.5rem;
+      color: #ccc;
+      cursor: pointer;
+      padding: 0 0.2rem;
+      transition: color 0.2s;
+    }
+
+    .star-rating input[type="radio"]:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label,
+    .star-rating input[type="radio"]:checked + label,
+    .star-rating input[type="radio"]:checked + label ~ label {
+      color: gold;
+    }
+
+    select, button {
+      padding: 0.5rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
     }
 
     button {
@@ -81,6 +81,14 @@
       border: none;
       cursor: pointer;
     }
+
+    #confirmationMessage {
+      color: green;
+      font-weight: bold;
+      text-align: center;
+      display: none;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
@@ -88,24 +96,25 @@
   <form id="feedbackForm">
     <h2>Peer Feedback Form</h2>
 
-    <!-- Student Dropdown -->
-    <label for="Student">Select student:</label>
-    <select name="Student" id="Student" required>
-      <option value="">-- choose --</option>
-      <option value="Brianna">Brianna</option>
-      <option value="Colette">Colette</option>
-      <option value="Dana">Dana</option>
-      <option value="Imani">Imani</option>
-      <option value="Jadel">Jadel</option>
-      <option value="Jalivia">Jalivia</option>
-      <option value="Paige">Paige</option>
-      <option value="Shanice">Shanice</option>
-    </select>
+    <div class="section">
+      <label for="Student">Select student:</label>
+      <select name="Student" required>
+        <option value="">-- choose --</option>
+        <option value="Brianna">Brianna</option>
+        <option value="Colette">Colette</option>
+        <option value="Dana">Dana</option>
+        <option value="Imani">Imani</option>
+        <option value="Jadel">Jadel</option>
+        <option value="Jalivia">Jalivia</option>
+        <option value="Paige">Paige</option>
+        <option value="Shanice">Shanice</option>
+      </select>
+    </div>
 
     <!-- Clarity -->
     <div class="section">
       <label>Clarity and Structure (1–5):</label>
-      <div class="star-group">
+      <div class="star-rating">
         <input type="radio" name="Clarity" id="clarity-1" value="1" required><label for="clarity-1">★</label>
         <input type="radio" name="Clarity" id="clarity-2" value="2"><label for="clarity-2">★</label>
         <input type="radio" name="Clarity" id="clarity-3" value="3"><label for="clarity-3">★</label>
@@ -118,7 +127,7 @@
     <!-- Ethics -->
     <div class="section">
       <label>Ethical Considerations (1–5):</label>
-      <div class="star-group">
+      <div class="star-rating">
         <input type="radio" name="Ethics" id="ethics-1" value="1" required><label for="ethics-1">★</label>
         <input type="radio" name="Ethics" id="ethics-2" value="2"><label for="ethics-2">★</label>
         <input type="radio" name="Ethics" id="ethics-3" value="3"><label for="ethics-3">★</label>
@@ -131,7 +140,7 @@
     <!-- Delivery -->
     <div class="section">
       <label>Delivery and Engagement (1–5):</label>
-      <div class="star-group">
+      <div class="star-rating">
         <input type="radio" name="Delivery" id="delivery-1" value="1" required><label for="delivery-1">★</label>
         <input type="radio" name="Delivery" id="delivery-2" value="2"><label for="delivery-2">★</label>
         <input type="radio" name="Delivery" id="delivery-3" value="3"><label for="delivery-3">★</label>
@@ -152,7 +161,7 @@
   </form>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxBSL5ciXtWDArb-z-yiNIWb22Wh_dxYaBFQ-eMFt9GZbDIEuQoNGcuStuuElMXtCjH/exec"; // Replace with your Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxBSL5ciXtWDArb-z-yiNIWb22Wh_dxYaBFQ-eMFt9GZbDIEuQoNGcuStuuElMXtCjH/exec"; // REPLACE this with your deployed Google Apps Script URL
     const form = document.getElementById("feedbackForm");
     const confirmation = document.getElementById("confirmationMessage");
 
@@ -167,18 +176,17 @@
       .then(response => {
         if (response.ok) {
           form.reset();
-          confirmation.style.display = "block";
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          confirmation.style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-          alert("Submission failed.");
+          alert("Submission failed. Please try again.");
         }
       })
       .catch(error => {
-        console.error("Error:", error);
-        alert("Error submitting feedback.");
+        console.error("Submission error:", error);
+        alert("There was a problem submitting the form.");
       });
     });
   </script>
-
 </body>
 </html>
