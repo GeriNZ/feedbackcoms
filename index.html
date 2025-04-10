@@ -14,25 +14,67 @@
   
     <br><br>
   
-    <label for="Comment">Feedback:</label><br>
-    <textarea name="Comment" rows="6" cols="60" required></textarea>
+    <label for="Clarity">Clarity and Structure (1–5):</label>
+    <select name="Clarity" required>
+      <option value="">-- select --</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <br>
+    <textarea name="ClarityComment" placeholder="Comment on clarity..." required></textarea>
   
     <br><br>
   
-    <button type="submit">Submit Feedback</button> </form>
+    <label for="Ethics">Ethical Considerations (1–5):</label>
+    <select name="Ethics" required>
+      <option value="">-- select --</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <br>
+    <textarea name="EthicsComment" placeholder="Comment on ethics..." required></textarea>
+  
+    <br><br>
+  
+    <label for="Delivery">Delivery and Engagement (1–5):</label>
+    <select name="Delivery" required>
+      <option value="">-- select --</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <br>
+    <textarea name="DeliveryComment" placeholder="Comment on delivery..." required></textarea>
+  
+    <br><br>
+  
+    <label for="GeneralComment">General Comments:</label>
+    <textarea name="GeneralComment" rows="4" cols="60" placeholder="Anything else you'd like to share?"></textarea>
+  
+    <br><br>
+  
+    <button type="submit">Submit Feedback</button>
+  </form>
   
   <p id="confirmationMessage" style="display: none; color: green; font-weight: bold;">
     ✅ Thank you! Your feedback was submitted anonymously.
   </p>
   
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxJQi1OCw6WUbS1_OR-mjqLMGXQF56XC-LeqkWF8ZZCQKYF22P1wHdRyxGShUpQGXUCKQ/exec"   // Replace with your Google Apps Script URL
+    const scriptURL = "https://script.google.com/macros/library/d/1N6dTdqIXhUBCfwIv6LVmQ8HCc3XTIfueQSlUTzNMWDzhvkDBIZhw6thx/9";
     const form = document.getElementById("feedbackForm");
     const confirmationMessage = document.getElementById("confirmationMessage");
   
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-  
       const formData = new FormData(form);
   
       fetch(scriptURL, {
