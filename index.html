@@ -73,10 +73,28 @@
       display: none;
     }
 
-    @media (max-width: 600px) {
-      form {
-        padding: 1.5rem;
-      }
+    .star-rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      gap: 5px;
+      margin-top: 0.5rem;
+    }
+
+    .star-rating input[type="radio"] {
+      display: none;
+    }
+
+    .star-rating label {
+      font-size: 1.5rem;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .star-rating input[type="radio"]:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+      color: gold;
     }
   </style>
 </head>
@@ -98,44 +116,44 @@
       <option value="Shanice">Shanice</option>
     </select>
 
-    <label for="Clarity">Clarity and Structure (1–5):</label>
-    <select name="Clarity" required>
-      <option value="">-- select --</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-    <textarea name="ClarityComment" placeholder="Write a comment about clarity and structure..." required></textarea>
+    <!-- Clarity -->
+    <label>Clarity and Structure (1–5):</label>
+    <div class="star-rating">
+      <input type="radio" name="Clarity" id="clarity-5" value="5" required><label for="clarity-5">★</label>
+      <input type="radio" name="Clarity" id="clarity-4" value="4"><label for="clarity-4">★</label>
+      <input type="radio" name="Clarity" id="clarity-3" value="3"><label for="clarity-3">★</label>
+      <input type="radio" name="Clarity" id="clarity-2" value="2"><label for="clarity-2">★</label>
+      <input type="radio" name="Clarity" id="clarity-1" value="1"><label for="clarity-1">★</label>
+    </div>
+    <textarea name="ClarityComment" placeholder="Comment on clarity and structure..." required></textarea>
 
-    <label for="Ethics">Ethical Considerations (1–5):</label>
-    <select name="Ethics" required>
-      <option value="">-- select --</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-    <textarea name="EthicsComment" placeholder="Write a comment about ethics..." required></textarea>
+    <!-- Ethics -->
+    <label>Ethical Considerations (1–5):</label>
+    <div class="star-rating">
+      <input type="radio" name="Ethics" id="ethics-5" value="5" required><label for="ethics-5">★</label>
+      <input type="radio" name="Ethics" id="ethics-4" value="4"><label for="ethics-4">★</label>
+      <input type="radio" name="Ethics" id="ethics-3" value="3"><label for="ethics-3">★</label>
+      <input type="radio" name="Ethics" id="ethics-2" value="2"><label for="ethics-2">★</label>
+      <input type="radio" name="Ethics" id="ethics-1" value="1"><label for="ethics-1">★</label>
+    </div>
+    <textarea name="EthicsComment" placeholder="Comment on ethical considerations..." required></textarea>
 
-    <label for="Delivery">Delivery and Engagement (1–5):</label>
-    <select name="Delivery" required>
-      <option value="">-- select --</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-    <textarea name="DeliveryComment" placeholder="Write a comment about delivery and engagement..." required></textarea>
+    <!-- Delivery -->
+    <label>Delivery and Engagement (1–5):</label>
+    <div class="star-rating">
+      <input type="radio" name="Delivery" id="delivery-5" value="5" required><label for="delivery-5">★</label>
+      <input type="radio" name="Delivery" id="delivery-4" value="4"><label for="delivery-4">★</label>
+      <input type="radio" name="Delivery" id="delivery-3" value="3"><label for="delivery-3">★</label>
+      <input type="radio" name="Delivery" id="delivery-2" value="2"><label for="delivery-2">★</label>
+      <input type="radio" name="Delivery" id="delivery-1" value="1"><label for="delivery-1">★</label>
+    </div>
+    <textarea name="DeliveryComment" placeholder="Comment on delivery and engagement..." required></textarea>
 
-    <label for="GeneralComment">General Comments:</label>
+    <!-- General Comments -->
+    <label>General Comments:</label>
     <textarea name="GeneralComment" placeholder="Anything else you'd like to share? (optional)"></textarea>
 
     <button type="submit">Submit Feedback</button>
-
     <p id="confirmationMessage">✅ Thank you! Your feedback was submitted anonymously.</p>
   </form>
 
