@@ -38,11 +38,13 @@
       padding: 0.5rem;
       border-radius: 5px;
       border: 1px solid #ccc;
+      resize: vertical;
     }
 
-    .stars {
-      display: flex;
-      gap: 5px;
+    .star-rating {
+      direction: rtl;
+      display: inline-flex;
+      justify-content: flex-start;
       margin-bottom: 0.5rem;
     }
 
@@ -54,13 +56,11 @@
       font-size: 1.5rem;
       color: #ccc;
       cursor: pointer;
+      padding: 0 0.2rem;
       transition: color 0.2s;
     }
 
-    .star-rating input[type="radio"]:checked ~ label {
-      color: gold;
-    }
-
+    .star-rating input[type="radio"]:checked ~ label,
     .star-rating label:hover,
     .star-rating label:hover ~ label {
       color: gold;
@@ -109,7 +109,7 @@
       </select>
     </div>
 
-    <!-- Star rating + comment section template -->
+    <!-- Clarity -->
     <div class="section">
       <label>Clarity and Structure (1–5):</label>
       <div class="star-rating">
@@ -122,6 +122,7 @@
       <textarea name="ClarityComment" placeholder="Comment on clarity..." required></textarea>
     </div>
 
+    <!-- Ethics -->
     <div class="section">
       <label>Ethical Considerations (1–5):</label>
       <div class="star-rating">
@@ -134,6 +135,7 @@
       <textarea name="EthicsComment" placeholder="Comment on ethics..." required></textarea>
     </div>
 
+    <!-- Delivery -->
     <div class="section">
       <label>Delivery and Engagement (1–5):</label>
       <div class="star-rating">
@@ -146,6 +148,7 @@
       <textarea name="DeliveryComment" placeholder="Comment on delivery..." required></textarea>
     </div>
 
+    <!-- General -->
     <div class="section">
       <label>General Comments:</label>
       <textarea name="GeneralComment" placeholder="Anything else you want to share..."></textarea>
@@ -156,7 +159,7 @@
   </form>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxBSL5ciXtWDArb-z-yiNIWb22Wh_dxYaBFQ-eMFt9GZbDIEuQoNGcuStuuElMXtCjH/exec"; // Replace with your Apps Script Web App URL
+    const scriptURL = "YOUR_WEBAPP_URL_HERE"; // Replace with your Apps Script Web App URL
     const form = document.getElementById("feedbackForm");
     const confirmation = document.getElementById("confirmationMessage");
 
