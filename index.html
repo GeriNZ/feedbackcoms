@@ -10,10 +10,6 @@
       background: #f9f9f9;
     }
 
-    h2 {
-      color: #333;
-    }
-
     form {
       background: #fff;
       padding: 2rem;
@@ -41,31 +37,34 @@
       resize: vertical;
     }
 
-    .star-rating {
+    .stars {
       display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-start;
+      flex-direction: row;
+      gap: 5px;
       margin-bottom: 0.5rem;
     }
 
-    .star-rating input[type="radio"] {
+    .stars input[type="radio"] {
       display: none;
     }
 
-    .star-rating label {
+    .stars label {
       font-size: 1.5rem;
       color: #ccc;
       cursor: pointer;
-      padding: 0 0.2rem;
       transition: color 0.2s;
     }
 
-    .star-rating input[type="radio"]:checked ~ label,
-    .star-rating label:hover,
-    .star-rating label:hover ~ label,
-    .star-rating input[type="radio"]:checked + label,
-    .star-rating input[type="radio"]:checked + label ~ label {
+    .stars input[type="radio"]:checked + label,
+    .stars label:hover,
+    .stars label:hover ~ label {
       color: gold;
+    }
+
+    .rating-group {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
     }
 
     select, button {
@@ -93,100 +92,101 @@
 </head>
 <body>
 
-  <form id="feedbackForm">
-    <h2>Peer Feedback Form</h2>
+<form id="feedbackForm">
+  <h2>Peer Feedback Form</h2>
 
-    <div class="section">
-      <label for="Student">Select student:</label>
-      <select name="Student" required>
-        <option value="">-- choose --</option>
-        <option value="Brianna">Brianna</option>
-        <option value="Colette">Colette</option>
-        <option value="Dana">Dana</option>
-        <option value="Imani">Imani</option>
-        <option value="Jadel">Jadel</option>
-        <option value="Jalivia">Jalivia</option>
-        <option value="Paige">Paige</option>
-        <option value="Shanice">Shanice</option>
-      </select>
+  <div class="section">
+    <label>Select student:</label>
+    <select name="Student" required>
+      <option value="">-- choose --</option>
+      <option value="Brianna">Brianna</option>
+      <option value="Colette">Colette</option>
+      <option value="Dana">Dana</option>
+      <option value="Imani">Imani</option>
+      <option value="Jadel">Jadel</option>
+      <option value="Jalivia">Jalivia</option>
+      <option value="Paige">Paige</option>
+      <option value="Shanice">Shanice</option>
+    </select>
+  </div>
+
+  <!-- Clarity -->
+  <div class="section">
+    <label>Clarity and Structure (1–5):</label>
+    <div class="stars">
+      <input type="radio" name="Clarity" id="clarity-1" value="1" required><label for="clarity-1">★</label>
+      <input type="radio" name="Clarity" id="clarity-2" value="2"><label for="clarity-2">★</label>
+      <input type="radio" name="Clarity" id="clarity-3" value="3"><label for="clarity-3">★</label>
+      <input type="radio" name="Clarity" id="clarity-4" value="4"><label for="clarity-4">★</label>
+      <input type="radio" name="Clarity" id="clarity-5" value="5"><label for="clarity-5">★</label>
     </div>
+    <textarea name="ClarityComment" placeholder="Comment on clarity..." required></textarea>
+  </div>
 
-    <!-- Clarity -->
-    <div class="section">
-      <label>Clarity and Structure (1–5):</label>
-      <div class="star-rating">
-        <input type="radio" name="Clarity" id="clarity-1" value="1" required><label for="clarity-1">★</label>
-        <input type="radio" name="Clarity" id="clarity-2" value="2"><label for="clarity-2">★</label>
-        <input type="radio" name="Clarity" id="clarity-3" value="3"><label for="clarity-3">★</label>
-        <input type="radio" name="Clarity" id="clarity-4" value="4"><label for="clarity-4">★</label>
-        <input type="radio" name="Clarity" id="clarity-5" value="5"><label for="clarity-5">★</label>
-      </div>
-      <textarea name="ClarityComment" placeholder="Comment on clarity..." required></textarea>
+  <!-- Ethics -->
+  <div class="section">
+    <label>Ethical Considerations (1–5):</label>
+    <div class="stars">
+      <input type="radio" name="Ethics" id="ethics-1" value="1" required><label for="ethics-1">★</label>
+      <input type="radio" name="Ethics" id="ethics-2" value="2"><label for="ethics-2">★</label>
+      <input type="radio" name="Ethics" id="ethics-3" value="3"><label for="ethics-3">★</label>
+      <input type="radio" name="Ethics" id="ethics-4" value="4"><label for="ethics-4">★</label>
+      <input type="radio" name="Ethics" id="ethics-5" value="5"><label for="ethics-5">★</label>
     </div>
+    <textarea name="EthicsComment" placeholder="Comment on ethics..." required></textarea>
+  </div>
 
-    <!-- Ethics -->
-    <div class="section">
-      <label>Ethical Considerations (1–5):</label>
-      <div class="star-rating">
-        <input type="radio" name="Ethics" id="ethics-1" value="1" required><label for="ethics-1">★</label>
-        <input type="radio" name="Ethics" id="ethics-2" value="2"><label for="ethics-2">★</label>
-        <input type="radio" name="Ethics" id="ethics-3" value="3"><label for="ethics-3">★</label>
-        <input type="radio" name="Ethics" id="ethics-4" value="4"><label for="ethics-4">★</label>
-        <input type="radio" name="Ethics" id="ethics-5" value="5"><label for="ethics-5">★</label>
-      </div>
-      <textarea name="EthicsComment" placeholder="Comment on ethics..." required></textarea>
+  <!-- Delivery -->
+  <div class="section">
+    <label>Delivery and Engagement (1–5):</label>
+    <div class="stars">
+      <input type="radio" name="Delivery" id="delivery-1" value="1" required><label for="delivery-1">★</label>
+      <input type="radio" name="Delivery" id="delivery-2" value="2"><label for="delivery-2">★</label>
+      <input type="radio" name="Delivery" id="delivery-3" value="3"><label for="delivery-3">★</label>
+      <input type="radio" name="Delivery" id="delivery-4" value="4"><label for="delivery-4">★</label>
+      <input type="radio" name="Delivery" id="delivery-5" value="5"><label for="delivery-5">★</label>
     </div>
+    <textarea name="DeliveryComment" placeholder="Comment on delivery..." required></textarea>
+  </div>
 
-    <!-- Delivery -->
-    <div class="section">
-      <label>Delivery and Engagement (1–5):</label>
-      <div class="star-rating">
-        <input type="radio" name="Delivery" id="delivery-1" value="1" required><label for="delivery-1">★</label>
-        <input type="radio" name="Delivery" id="delivery-2" value="2"><label for="delivery-2">★</label>
-        <input type="radio" name="Delivery" id="delivery-3" value="3"><label for="delivery-3">★</label>
-        <input type="radio" name="Delivery" id="delivery-4" value="4"><label for="delivery-4">★</label>
-        <input type="radio" name="Delivery" id="delivery-5" value="5"><label for="delivery-5">★</label>
-      </div>
-      <textarea name="DeliveryComment" placeholder="Comment on delivery..." required></textarea>
-    </div>
+  <!-- General -->
+  <div class="section">
+    <label>General Comments:</label>
+    <textarea name="GeneralComment" placeholder="Anything else you want to share..."></textarea>
+  </div>
 
-    <!-- General -->
-    <div class="section">
-      <label>General Comments:</label>
-      <textarea name="GeneralComment" placeholder="Anything else you want to share..."></textarea>
-    </div>
+  <button type="submit">Submit Feedback</button>
+  <p id="confirmationMessage">✅ Thank you! Your feedback has been submitted anonymously.</p>
+</form>
 
-    <button type="submit">Submit Feedback</button>
-    <p id="confirmationMessage">✅ Thank you! Your feedback has been submitted anonymously.</p>
-  </form>
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxBSL5ciXtWDArb-z-yiNIWb22Wh_dxYaBFQ-eMFt9GZbDIEuQoNGcuStuuElMXtCjH/exec"; // Replace with your Web App URL
+  const form = document.getElementById("feedbackForm");
+  const confirmation = document.getElementById("confirmationMessage");
 
-  <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxBSL5ciXtWDArb-z-yiNIWb22Wh_dxYaBFQ-eMFt9GZbDIEuQoNGcuStuuElMXtCjH/exec"; // REPLACE this with your deployed Google Apps Script URL
-    const form = document.getElementById("feedbackForm");
-    const confirmation = document.getElementById("confirmationMessage");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-
-      fetch(scriptURL, {
-        method: "POST",
-        body: formData
-      })
-      .then(response => {
-        if (response.ok) {
-          form.reset();
-          confirmation.style.display = 'block';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          alert("Submission failed. Please try again.");
-        }
-      })
-      .catch(error => {
-        console.error("Submission error:", error);
-        alert("There was a problem submitting the form.");
-      });
+    fetch(scriptURL, {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        form.reset();
+        confirmation.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert("Submission failed. Please try again.");
+      }
+    })
+    .catch(error => {
+      console.error("Submission error:", error);
+      alert("There was a problem submitting the form.");
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
