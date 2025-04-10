@@ -2,21 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Presentation Feedback Form</title>
+  <title>COMS2502 Feedback Form</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f2f2f2;
-      padding: 2rem;
+      padding: 0;
       margin: 0;
     }
 
-    form {
-      background: #fff;
+    header {
+      background-image: url('https://images.unsplash.com/photo-1535242208474-9a2793260d3f?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    main {
+      padding: 2rem;
       max-width: 700px;
       margin: 0 auto;
-      padding: 2rem;
+      background: #fff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
@@ -24,7 +42,13 @@
     h2 {
       text-align: center;
       color: #333;
+    }
+
+    p.instructions {
+      color: #444;
+      font-size: 1rem;
       margin-bottom: 2rem;
+      line-height: 1.5;
     }
 
     label {
@@ -121,8 +145,19 @@
 </head>
 <body>
 
+<header>
+  <h1>COMS2502 Communication Technology Practicum</h1>
+</header>
+
+<main>
   <form id="feedbackForm">
     <h2>Peer Feedback Form</h2>
+
+    <p class="instructions">
+      Please provide thoughtful feedback to your peers. Giving only five stars without comments is not helpful.
+      Your comments will assist your classmates in preparing their individual reports (Assignment Part 2).
+      You must add a comment for each rating. The final general comment is optional.
+    </p>
 
     <label for="Student">Select a student:</label>
     <select name="Student" required>
@@ -170,11 +205,11 @@
     </div>
     <textarea name="DeliveryComment" placeholder="Comment on delivery and engagement..." required></textarea>
 
-    <!-- General Comments -->
+    <!-- General -->
     <label>General Comments:</label>
     <textarea name="GeneralComment" placeholder="Anything else you'd like to share? (optional)"></textarea>
 
-    <!-- Loading Spinner -->
+    <!-- Spinner -->
     <div id="loadingSpinner">
       <div class="spinner"></div>
       <p>Submitting...</p>
@@ -183,41 +218,42 @@
     <button type="submit">Submit Feedback</button>
     <p id="confirmationMessage">✅ Thank you! Your feedback was submitted anonymously.</p>
   </form>
+</main>
 
-  <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbz4bgphbLb3_3zCeDVK81SWmrTJ49EIwfG3kSA1KXndjLZ4ohFUGAdjy5Bg_Dv1OUimyQ/exec";
-    const form = document.getElementById("feedbackForm");
-    const confirmationMessage = document.getElementById("confirmationMessage");
-    const spinner = document.getElementById("loadingSpinner");
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbz4bgphbLb3_3zCeDVK81SWmrTJ49EIwfG3kSA1KXndjLZ4ohFUGAdjy5Bg_Dv1OUimyQ/exec";
+  const form = document.getElementById("feedbackForm");
+  const confirmationMessage = document.getElementById("confirmationMessage");
+  const spinner = document.getElementById("loadingSpinner");
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
 
-      spinner.style.display = "block";
-      confirmationMessage.style.display = "none";
+    spinner.style.display = "block";
+    confirmationMessage.style.display = "none";
 
-      fetch(scriptURL, {
-        method: "POST",
-        body: formData
-      })
-      .then(response => {
-        spinner.style.display = "none";
-        if (response.ok) {
-          form.reset();
-          confirmationMessage.style.display = "block";
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
-      })
-      .catch(error => {
-        spinner.style.display = "none";
-        console.error("Submission failed:", error);
-        alert("Error submitting feedback.");
-      });
+    fetch(scriptURL, {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      spinner.style.display = "none";
+      if (response.ok) {
+        form.reset();
+        confirmationMessage.style.display = "block";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    })
+    .catch(error => {
+      spinner.style.display = "none";
+      console.error("Submission failed:", error);
+      alert("Error submitting feedback.");
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>
