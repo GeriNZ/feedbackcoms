@@ -1,7 +1,7 @@
 <form id="feedbackForm">
-    <label>Student:</label>
+    <label for="Student">Select a student:</label>
     <select name="Student" required>
-      <option value="">-- select --</option>
+      <option value="">-- choose a student --</option>
       <option value="Brianna">Brianna</option>
       <option value="Colette">Colette</option>
       <option value="Dana">Dana</option>
@@ -10,56 +10,47 @@
       <option value="Jalivia">Jalivia</option>
       <option value="Paige">Paige</option>
       <option value="Shanice">Shanice</option>
-    </select><br><br>
+    </select>
   
-    <!-- Clarity -->
-    <label>Clarity and Structure (1–5):</label>
-    <input type="number" name="Clarity" min="1" max="5" required><br>
-    <textarea name="ClarityComment" placeholder="Comment on clarity..." required></textarea><br><br>
+    <br><br>
   
-    <!-- Ethics -->
-    <label>Ethical Considerations (1–5):</label>
-    <input type="number" name="Ethics" min="1" max="5" required><br>
-    <textarea name="EthicsComment" placeholder="Comment on ethics..." required></textarea><br><br>
+    <label for="Comment">Feedback:</label><br>
+    <textarea name="Comment" rows="6" cols="60" required></textarea>
   
-    <!-- Delivery -->
-    <label>Delivery and Engagement (1–5):</label>
-    <input type="number" name="Delivery" min="1" max="5" required><br>
-    <textarea name="DeliveryComment" placeholder="Comment on delivery..." required></textarea><br><br>
+    <br><br>
   
-    <!-- General -->
-    <label>General Comments:</label><br>
-    <textarea name="GeneralComment" placeholder="Anything else you want to share..."></textarea><br><br>
+    <button type="submit">Submit Feedback</button>1`  </form>
   
-    <button type="submit">Submit Feedback</button>
-  </form>
-  
-  <p id="confirmationMessage" style="display:none; color: green; font-weight: bold;">
-    ✅ Thank you! Your feedback has been submitted anonymously.
+  <p id="confirmationMessage" style="display: none; color: green; font-weight: bold;">
+    ✅ Thank you! Your feedback was submitted anonymously.
   </p>
   
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxBSL5ciXtWDArb-z-yiNIWb22Wh_dxYaBFQ-eMFt9GZbDIEuQoNGcuStuuElMXtCjH/exec"; // Replace with your Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxBSL5ciXtWDArb-z-yiNIWb22Wh_dxYaBFQ-eMFt9GZbDIEuQoNGcuStuuElMXtCjH/exec;"   // Replace with your Google Apps Script URL
     const form = document.getElementById("feedbackForm");
-    const confirmation = document.getElementById("confirmationMessage");
+    const confirmationMessage = document.getElementById("confirmationMessage");
   
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+  
       const formData = new FormData(form);
   
-      fetch(scriptURL, { method: 'POST', body: formData })
-        .then(response => {
-          if (response.ok) {
-            form.reset();
-            confirmation.style.display = 'block';
-          } else {
-            alert("Submission failed. Try again.");
-          }
-        })
-        .catch(error => {
-          alert("Error submitting form.");
-          console.error(error);
-        });
+      fetch(scriptURL, {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          form.reset();
+          confirmationMessage.style.display = "block";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Submission failed:", error);
+        alert("Error submitting feedback.");
+      });
     });
   </script>
   
