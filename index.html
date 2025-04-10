@@ -1,104 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Presentation Feedback Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 2rem;
-      background: #f9f9f9;
-    }
-
-    form {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .section {
-      margin-bottom: 2rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-    }
-
-    textarea {
-      width: 100%;
-      padding: 0.5rem;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      resize: vertical;
-    }
-
-    .stars {
-      display: flex;
-      flex-direction: row;
-      gap: 5px;
-      margin-bottom: 0.5rem;
-    }
-
-    .stars input[type="radio"] {
-      display: none;
-    }
-
-    .stars label {
-      font-size: 1.5rem;
-      color: #ccc;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .stars input[type="radio"]:checked + label,
-    .stars label:hover,
-    .stars label:hover ~ label {
-      color: gold;
-    }
-
-    .rating-group {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-    }
-
-    select, button {
-      padding: 0.5rem;
-      border-radius: 5px;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    #confirmationMessage {
-      color: green;
-      font-weight: bold;
-      text-align: center;
-      display: none;
-      margin-top: 2rem;
-    }
-  </style>
-</head>
-<body>
-
 <form id="feedbackForm">
-  <h2>Peer Feedback Form</h2>
-
-  <div class="section">
-    <label>Select student:</label>
+    <label>Student:</label>
     <select name="Student" required>
-      <option value="">-- choose --</option>
+      <option value="">-- select --</option>
       <option value="Brianna">Brianna</option>
       <option value="Colette">Colette</option>
       <option value="Dana">Dana</option>
@@ -107,86 +10,56 @@
       <option value="Jalivia">Jalivia</option>
       <option value="Paige">Paige</option>
       <option value="Shanice">Shanice</option>
-    </select>
-  </div>
-
-  <!-- Clarity -->
-  <div class="section">
+    </select><br><br>
+  
+    <!-- Clarity -->
     <label>Clarity and Structure (1–5):</label>
-    <div class="stars">
-      <input type="radio" name="Clarity" id="clarity-1" value="1" required><label for="clarity-1">★</label>
-      <input type="radio" name="Clarity" id="clarity-2" value="2"><label for="clarity-2">★</label>
-      <input type="radio" name="Clarity" id="clarity-3" value="3"><label for="clarity-3">★</label>
-      <input type="radio" name="Clarity" id="clarity-4" value="4"><label for="clarity-4">★</label>
-      <input type="radio" name="Clarity" id="clarity-5" value="5"><label for="clarity-5">★</label>
-    </div>
-    <textarea name="ClarityComment" placeholder="Comment on clarity..." required></textarea>
-  </div>
-
-  <!-- Ethics -->
-  <div class="section">
+    <input type="number" name="Clarity" min="1" max="5" required><br>
+    <textarea name="ClarityComment" placeholder="Comment on clarity..." required></textarea><br><br>
+  
+    <!-- Ethics -->
     <label>Ethical Considerations (1–5):</label>
-    <div class="stars">
-      <input type="radio" name="Ethics" id="ethics-1" value="1" required><label for="ethics-1">★</label>
-      <input type="radio" name="Ethics" id="ethics-2" value="2"><label for="ethics-2">★</label>
-      <input type="radio" name="Ethics" id="ethics-3" value="3"><label for="ethics-3">★</label>
-      <input type="radio" name="Ethics" id="ethics-4" value="4"><label for="ethics-4">★</label>
-      <input type="radio" name="Ethics" id="ethics-5" value="5"><label for="ethics-5">★</label>
-    </div>
-    <textarea name="EthicsComment" placeholder="Comment on ethics..." required></textarea>
-  </div>
-
-  <!-- Delivery -->
-  <div class="section">
+    <input type="number" name="Ethics" min="1" max="5" required><br>
+    <textarea name="EthicsComment" placeholder="Comment on ethics..." required></textarea><br><br>
+  
+    <!-- Delivery -->
     <label>Delivery and Engagement (1–5):</label>
-    <div class="stars">
-      <input type="radio" name="Delivery" id="delivery-1" value="1" required><label for="delivery-1">★</label>
-      <input type="radio" name="Delivery" id="delivery-2" value="2"><label for="delivery-2">★</label>
-      <input type="radio" name="Delivery" id="delivery-3" value="3"><label for="delivery-3">★</label>
-      <input type="radio" name="Delivery" id="delivery-4" value="4"><label for="delivery-4">★</label>
-      <input type="radio" name="Delivery" id="delivery-5" value="5"><label for="delivery-5">★</label>
-    </div>
-    <textarea name="DeliveryComment" placeholder="Comment on delivery..." required></textarea>
-  </div>
-
-  <!-- General -->
-  <div class="section">
-    <label>General Comments:</label>
-    <textarea name="GeneralComment" placeholder="Anything else you want to share..."></textarea>
-  </div>
-
-  <button type="submit">Submit Feedback</button>
-  <p id="confirmationMessage">✅ Thank you! Your feedback has been submitted anonymously.</p>
-</form>
-
-<script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxBSL5ciXtWDArb-z-yiNIWb22Wh_dxYaBFQ-eMFt9GZbDIEuQoNGcuStuuElMXtCjH/exec"; // Replace with your Web App URL
-  const form = document.getElementById("feedbackForm");
-  const confirmation = document.getElementById("confirmationMessage");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-
-    fetch(scriptURL, {
-      method: "POST",
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        form.reset();
-        confirmation.style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        alert("Submission failed. Please try again.");
-      }
-    })
-    .catch(error => {
-      console.error("Submission error:", error);
-      alert("There was a problem submitting the form.");
+    <input type="number" name="Delivery" min="1" max="5" required><br>
+    <textarea name="DeliveryComment" placeholder="Comment on delivery..." required></textarea><br><br>
+  
+    <!-- General -->
+    <label>General Comments:</label><br>
+    <textarea name="GeneralComment" placeholder="Anything else you want to share..."></textarea><br><br>
+  
+    <button type="submit">Submit Feedback</button>
+  </form>
+  
+  <p id="confirmationMessage" style="display:none; color: green; font-weight: bold;">
+    ✅ Thank you! Your feedback has been submitted anonymously.
+  </p>
+  
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxBSL5ciXtWDArb-z-yiNIWb22Wh_dxYaBFQ-eMFt9GZbDIEuQoNGcuStuuElMXtCjH/exec"; // Replace with your Apps Script Web App URL
+    const form = document.getElementById("feedbackForm");
+    const confirmation = document.getElementById("confirmationMessage");
+  
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+  
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+          if (response.ok) {
+            form.reset();
+            confirmation.style.display = 'block';
+          } else {
+            alert("Submission failed. Try again.");
+          }
+        })
+        .catch(error => {
+          alert("Error submitting form.");
+          console.error(error);
+        });
     });
-  });
-</script>
-
-</body>
-</html>
+  </script>
+  
